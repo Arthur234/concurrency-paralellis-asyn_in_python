@@ -40,11 +40,15 @@ def write_logs(files_count, duration, filename="log_file.csv"):
 
 
 if __name__ == '__main__':
-    number_of_cycles = 1
+    number_of_cycles = 1000
 
     for _ in range(number_of_cycles):
-        number_of_iterations = 997
+        number_of_iterations = 10
         start = datetime.now()
-        main(number_of_iterations)
-        duration = datetime.now() - start
-        # write_logs(number_of_iterations, duration)
+        try:
+            main(number_of_iterations)
+            duration = datetime.now() - start
+            write_logs(number_of_iterations, duration)
+        except Exception as error:
+            print(f"Exception occured: {error}")
+
